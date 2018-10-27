@@ -1,0 +1,42 @@
+spring:
+  cloud:
+    config:
+      enabled: true #开启配置
+      profile: dev  #版本
+      server:
+        native:
+          search-locations: classpath:config/  # 搜索src/main/resource 下的properties文件夹下的文件
+      username: user
+      password: test
+  application:
+    name: flever-config
+  profiles:
+    active: native  # 配置使用本地储存
+  redis:
+    host: 47.98.183.84
+    password: tianxia123$
+    pool:
+       max-idle: 100
+       max-wait: -1
+       min-idle: 1
+       max-active: 1000
+    port: 6379
+    timeout: 10000
+  session:
+    store-type: redis
+  security:
+    user:
+      password: test
+
+server:
+  port: 8084 #启动端口号
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true #是否注册到eureka服务器
+    fetch-registry: true #是否可检索
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8080/eureka/ #服务中心
